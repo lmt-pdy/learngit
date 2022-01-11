@@ -2,10 +2,6 @@
   <div class="login_container">
     <!-- 登录盒子  -->
     <div class="login_box">
-      <!-- 头像 -->
-      <div class="avatar_box">
-        <img src="../assets/logo.png" alt="">
-      </div>
       <!-- 登录表单 -->
       <el-form :model="loginForm" ref="LoginFormRef" :rules="loginFormRules" label-width="0px" class="login_form">
         <!-- 用户名 -->
@@ -32,8 +28,8 @@ export default {
     return {
       // 数据绑定
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: '',
+        password: ''
       },
       // 表单验证规则
       loginFormRules: {
@@ -81,8 +77,6 @@ export default {
         if (res.meta.status !== 200) {
           return this.$message.error('登录失败:' + res.meta.msg) // console.log("登录失败:"+res.meta.msg)
         }
-
-        this.$message.success('登录成功')
         console.log(res)
         // 保存token
         window.sessionStorage.setItem('token', res.data.token)
@@ -100,32 +94,14 @@ export default {
   height: 100%;
 }
 .login_box {
-  width: 450px;
-  height: 300px;
+  width: 350px;
+  height: 240px;
   background: #fff;
   border-radius: 3px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  .avatar_box {
-    height: 130px;
-    width: 130px;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 0 10px #ddd;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eee;
-    }
-  }
 }
 .login_form {
   position: absolute;
@@ -136,6 +112,7 @@ export default {
 }
 .btns {
   display: flex;
+  padding-bottom: 0px;
   justify-content: flex-end;
 }
 </style>
